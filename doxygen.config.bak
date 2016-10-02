@@ -1,0 +1,15 @@
+DOXYFILE_ENCODING	=	UTF-8
+
+OUTPUT_LANGUAGE		= 	English
+
+PROJECT_NAME		=	"Cucumber2D Game Engine"
+
+PROJECT_NUMBER		=	0.0.1
+
+PROJECT_BRIEF		=	2D software render game engine
+
+OUTPUT_DIRECTORY	=	doc/
+
+INPUT			=	/ Utils/ Platform/
+
+RECURSIVE		= 	NO
