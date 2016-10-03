@@ -1,6 +1,4 @@
 /*
- * cucumber_window.h
- *
  * Represents encapsulated window class.
  * All graphics will be painted on this.
  *
@@ -14,6 +12,9 @@
 
 #include "Utils/cucumber_dimension.h"
 
+// minimum window height and width.
+#define MIN_WINDOW_SIZE 5;
+
 // just import for c++
 class Dimension;
 
@@ -21,15 +22,12 @@ class CucumberWindow {
 
 public:
 
-	// minimum window height and width.
-	const static int MIN_WINDOW_SIZE;
-
 private:
 
 	int windowWidth;
 	int windowHeight;
 
-	bool isVisible;
+	bool visibility;
 
 public:
 
@@ -42,7 +40,7 @@ public:
 	 * @param[in] windowHeight window height in pixels
 	 */
 
-	CucumberWindow(int windowWidth, int windowWidth);
+	CucumberWindow(int windowWidth, int windowHeight);
 
 
 	/* @brief Simple window constructor with just two arguments

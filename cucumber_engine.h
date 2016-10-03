@@ -10,8 +10,6 @@
  *
  */
 
-namespace Cucumber {
-
 #include "Platform/cucumber_system_configuration.h"
 
 #include "cucumber_window.h"
@@ -23,6 +21,7 @@ namespace Cucumber {
  * First function you must call when using engine. Init engine parts
  * and adopt to the current system configuration;
  */
-void initEngine();
 
-}
+namespace Cucumber {
+	void initEngine();
+};

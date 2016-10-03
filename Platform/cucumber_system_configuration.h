@@ -20,8 +20,18 @@ private:
 	 * 2 for MacOS
 	 */
 
-	int systemType;
+	static int systemType;
 
+public:
 
+	/*
+	 * Return system type
+	 * see systemType
+	 *
+	 */
+
+	static int getSystemType();
+	static void setSystemType(int securityCode, int type);
+	static bool isInitialized();
 
 };
