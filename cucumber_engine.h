@@ -13,6 +13,10 @@
 #include "Platform/cucumber_system_configuration.h"
 
 #include "cucumber_window.h"
+#include "CucumberGL/CucumberGL.h"
+
+#ifndef CucumberGL_LABEL
+#define IS_CUCUMBERGL_INSTALLED false
 
 
 /**

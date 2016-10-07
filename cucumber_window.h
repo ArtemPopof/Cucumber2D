@@ -12,6 +12,8 @@
 
 #include "Utils/cucumber_dimension.h"
 
+#include <thread>
+
 // minimum window height and width.
 #define MIN_WINDOW_SIZE 5;
 
@@ -20,12 +22,13 @@ class Dimension;
 
 class CucumberWindow {
 
-public:
 
 private:
 
 	int windowWidth;
 	int windowHeight;
+
+	int startX, startY;
 
 	bool visibility;
 
@@ -51,6 +54,7 @@ public:
 	 */
 
 	CucumberWindow();
+	~CucumberWindow();
 
 
 	/**
@@ -65,16 +69,28 @@ public:
 	 */
 	bool isVisible();
 
+	bool isReadyForPainting();
+
+	void setVisible(bool visible);
+
 	/*
 	 * Set window size. See @ref Dimension class
 	 */
 	void setDimension(Dimension dimension);
 
+	/*
+	 * Show window on the screen.
+	 * Specify all parameters before it.
+	 *
+	 */
+
+	void showWindow();
+
+	// Graphics operations
+
+	void drawPixel(int x, int y);
+
 };
-
-
-
-
 
 
 #endif /* CUCUMBER_WINDOW_H_ */

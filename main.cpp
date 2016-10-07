@@ -6,13 +6,36 @@
  */
 
 #include "cucumber_engine.h"
+#include <iostream>
+
+void run(CucumberGL* gl);
+void render(CucumberGL* gl);
+
+CucumberWindow window;
 
 int main(void) {
 
 	Cucumber::initEngine();
 
-	CucumberWindow window(500,500);
+	window(500,500);
+
+	//window.setRenderCycleFunction(render);
 
 	return 0;
 }
 
+void run(CucumberGL* gl) {
+
+	while (window.isVisible()) {
+
+		//render();
+
+	}
+
+}
+
+void render(CucumberGL* gl) {
+
+
+
+}
