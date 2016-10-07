@@ -11,31 +11,20 @@
 void run(CucumberGL* gl);
 void render(CucumberGL* gl);
 
-CucumberWindow window;
-
 int main(void) {
 
 	Cucumber::initEngine();
 
-	window(500,500);
+	CucumberWindow window(500,500);
 
-	//window.setRenderCycleFunction(render);
+	window.setRenderFunction(render);
 
 	return 0;
 }
 
-void run(CucumberGL* gl) {
-
-	while (window.isVisible()) {
-
-		//render();
-
-	}
-
-}
 
 void render(CucumberGL* gl) {
 
-
+	printf("drawing action accured\n");
 
 }

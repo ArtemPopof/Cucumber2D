@@ -6,6 +6,7 @@
  */
 
 #include "CucumberGL.h"
+#include <stdio.h>
 
 CucumberGL::CucumberGL(CucumberWindow* window): currentWindow(window) {
 

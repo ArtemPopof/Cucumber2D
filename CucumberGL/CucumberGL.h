@@ -1,6 +1,9 @@
 #define IS_CUCUMBERGL_INSTALLED true
 
-#include "cucumber_window.h"
+#ifndef CUCUMBER_GL_H_
+#define CUCUMBER_GL_H_
+
+#include "../cucumber_window.h"
 
 /**
  * CucumberGL class
@@ -9,6 +12,8 @@
  * Created solely for education purposes.
  *
  */
+
+class CucumberWindow;
 
 class CucumberGL {
 
@@ -26,3 +31,5 @@ public:
 
 
 };
+
+#endif

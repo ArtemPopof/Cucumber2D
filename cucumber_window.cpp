@@ -32,8 +32,8 @@ LinuxX11Window win;
 thread worker;
 
 CucumberWindow::CucumberWindow(int windowWidth, int windowHeight)
-	: windowWidth(windowWidth), windowHeight(windowHeight), visibility(false),
-	  startX(0), startY(0) {
+	: windowWidth(windowWidth), windowHeight(windowHeight),
+	  startX(0), startY(0), visibility(false), renderFunction(nullptr) {
 
 	if (!SystemConfiguration::isInitialized()) {
 		fprintf(stderr, "please, init engine first with initEngine() func");
@@ -46,6 +46,8 @@ CucumberWindow::CucumberWindow(int windowWidth, int windowHeight)
 	printf("set visibility to true, if you want to see it\n");
 
 	initSystemWindow(SystemConfiguration::getSystemType());
+
+	glInstance = new CucumberGL(this);
 }
 
 Dimension CucumberWindow::getDimension() {
@@ -85,9 +87,14 @@ bool CucumberWindow::isVisible() {
 	return visibility;
 }
 
+bool CucumberWindow::isRenderFunctionSet() {
+	return renderFunction != nullptr;
+}
+
 void CucumberWindow::setVisible(bool visible) {
 	visibility = visible;
 }
+
 
 void CucumberWindow::showWindow() {
 
@@ -109,7 +116,7 @@ void CucumberWindow::showWindow() {
 
 		thread worker(updateWindowThread, this);
 
-		worker.join;
+		worker.join();
 
 	}
 }
@@ -132,12 +139,21 @@ void updateWindowThread(CucumberWindow* instance) {
 
 		XNextEvent(win.display, event);
 
+		if (event->type == Expose) {
+			if (instance->isRenderFunctionSet())
+				instance->applyGLOperations();
+		}
+
 	}
 
 }
 
+void CucumberWindow::applyGLOperations() {
+	renderFunction(glInstance);
+}
+
 bool CucumberWindow::isReadyForPainting() {
-	if (*win.display == NULL, *win.window == NULL)
+	if (win.display == 0 || win.window == 0 || win.gc == 0)
 		return false;
 	else
 		return true;
@@ -151,5 +167,11 @@ void CucumberWindow::drawPixel(int x, int y) {
 
 	XDrawPoint(win.display, win.window, win.gc, x, y);
 
+
+}
+
+void CucumberWindow::setRenderFunction(void (*newRenderFunction)(CucumberGL*)) {
+
+	renderFunction = newRenderFunction;
 
 }

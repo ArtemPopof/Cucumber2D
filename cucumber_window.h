@@ -11,6 +11,7 @@
 #define CUCUMBER_WINDOW_H_
 
 #include "Utils/cucumber_dimension.h"
+#include "CucumberGL/CucumberGL.h"
 
 #include <thread>
 
@@ -19,6 +20,7 @@
 
 // just import for c++
 class Dimension;
+class CucumberGL;
 
 class CucumberWindow {
 
@@ -31,6 +33,15 @@ private:
 	int startX, startY;
 
 	bool visibility;
+
+	/**
+	 * Pointer to the render function.
+	 * To set function call setRenderFunction(CucumberGL*)
+	 *
+	 */
+	void (*renderFunction)(CucumberGL*);
+
+	CucumberGL* glInstance;
 
 public:
 
@@ -73,6 +84,8 @@ public:
 
 	void setVisible(bool visible);
 
+	bool isRenderFunctionSet();
+
 	/*
 	 * Set window size. See @ref Dimension class
 	 */
@@ -85,6 +98,12 @@ public:
 	 */
 
 	void showWindow();
+
+	// Graphics
+
+	void setRenderFunction(void (*renderFunction)(CucumberGL*));
+
+	void applyGLOperations();
 
 	// Graphics operations
 

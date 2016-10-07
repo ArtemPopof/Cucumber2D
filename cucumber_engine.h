@@ -17,6 +17,7 @@
 
 #ifndef CucumberGL_LABEL
 #define IS_CUCUMBERGL_INSTALLED false
+#endif
 
 
 /**
