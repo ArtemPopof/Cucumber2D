@@ -13,7 +13,7 @@ CucumberGL::CucumberGL(CucumberWindow* window): currentWindow(window) {
 	//development
 	printf("CUCUMBERGL: CucumberGL instance is created!");
 
-	if (window->isReadyForPainting())
+	if (!window->isReadyForPainting())
 		fprintf(stderr, "CUCUMBERGL: Window instance has not been initialized");
 
 }

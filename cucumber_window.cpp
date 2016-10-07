@@ -123,10 +123,13 @@ void CucumberWindow::showWindow() {
 
 CucumberWindow::~CucumberWindow() {
 	setVisible(false);
-	worker.join();
 
-	XFreeGC(win.display, win.gc);
-	XDestroyWindow(win.display,win.window);
+	if(win.gc != NULL)
+		XFreeGC(win.display, win.gc);
+
+	if(win.window != NULL)
+		XDestroyWindow(win.display,win.window);
+
 	XCloseDisplay(win.display);
 }
 
@@ -142,6 +145,8 @@ void updateWindowThread(CucumberWindow* instance) {
 		if (event->type == Expose) {
 			if (instance->isRenderFunctionSet())
 				instance->applyGLOperations();
+		}else {
+			instance->applyGLOperations();
 		}
 
 	}
@@ -153,7 +158,7 @@ void CucumberWindow::applyGLOperations() {
 }
 
 bool CucumberWindow::isReadyForPainting() {
-	if (win.display == 0 || win.window == 0 || win.gc == 0)
+	if (win.display == 0)
 		return false;
 	else
 		return true;
